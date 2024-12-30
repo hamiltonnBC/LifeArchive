@@ -1,7 +1,7 @@
 // src/pages/LifeChronicle/components/Notebook/NotebookHeader.jsx
 import React from 'react';
 import { BookOpen, Plus } from 'lucide-react';
-import useChronicleStore from '../../../../store/chronicleStore';
+import useChronicleStore from '../../store/chronicleStore';
 
 const NotebookHeader = () => {
     const { currentSection } = useChronicleStore(state => ({

@@ -1,7 +1,7 @@
 // src/pages/LifeChronicle/components/Notebook/NotebookFooter.jsx
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import useChronicleStore from '../../../../store/chronicleStore';
+import useChronicleStore from '../../store/chronicleStore';
 
 const NotebookFooter = ({ currentPage, totalPages }) => {
     const setCurrentPage = useChronicleStore(state => state.setCurrentPage);

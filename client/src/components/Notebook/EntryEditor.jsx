@@ -1,7 +1,7 @@
 // src/pages/LifeChronicle/components/Notebook/EntryEditor.jsx
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import useChronicleStore from '../../../../store/chronicleStore';
+import useChronicleStore from '../../store/chronicleStore';
 
 const EntryEditor = ({ entry = null, onClose }) => {
     const [formData, setFormData] = useState({

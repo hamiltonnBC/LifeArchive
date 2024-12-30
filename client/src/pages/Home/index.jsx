@@ -1,10 +1,10 @@
 // src/pages/Home.jsx
 import React from 'react';
 import { Calendar, Book, MessageSquare } from 'lucide-react';
-import { Alert, AlertDescription } from "../components/ui/alert";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Alert, AlertDescription } from "../../components/ui/alert.jsx";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card.jsx";
 
-const Home = () => {
+const Index = () => {
     const features = [
         {
             icon: <Calendar className="h-5 w-5 text-blue-500" />,
@@ -74,4 +74,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Index;

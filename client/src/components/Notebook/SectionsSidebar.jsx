@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, GripVertical, Edit2, Trash2 } from 'lucide-react';
-import Modal from '../../../../components/ui/modal';
-import useChronicleStore from '../../../../store/chronicleStore';
+import Modal from '../../components/ui/modal';
+import useChronicleStore from '../../store/chronicleStore';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const SectionsSidebar = () => {

@@ -1,16 +1,21 @@
-// src/pages/LifeChronicle/components/Notebook/NotebookContent.jsx
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Edit2, Trash2 } from 'lucide-react';
-import useChronicleStore from '../../../../store/chronicleStore';
+import useChronicleStore from '../../store/chronicleStore';
 
 const NotebookContent = () => {
-    const { entries, tags, currentPage, deleteEntry, setEditingEntry } = useChronicleStore(state => ({
-        entries: state.entries,
-        tags: state.tags,
-        currentPage: state.currentPage,
-        deleteEntry: state.deleteEntry,
-        setEditingEntry: state.setEditingEntry
-    }));
+    // Use useMemo to create a stable selector function
+    const selector = useMemo(
+        () => (state) => ({
+            entries: state.entries,
+            currentPage: state.currentPage,
+            deleteEntry: state.deleteEntry,
+            setEditingEntry: state.setEditingEntry,
+            tags: state.tags, // Ensure this is part of the store if being used
+        }),
+        []
+    );
+
+    const { entries, currentPage, deleteEntry, setEditingEntry, tags } = useChronicleStore(selector);
 
     const entriesPerPage = 5;
     const startIndex = (currentPage - 1) * entriesPerPage;
@@ -22,7 +27,7 @@ const NotebookContent = () => {
             style={{
                 backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 27px, #e5e7eb 28px)',
                 backgroundSize: '100% 28px',
-                minHeight: '600px'
+                minHeight: '600px',
             }}
         >
             {paginatedEntries.map((entry) => (
@@ -70,15 +75,15 @@ const EntryItem = ({ entry, onEdit, onDelete, tags }) => {
             <p className="text-gray-600 mb-2 leading-7">{entry.content}</p>
             {entry.tags.length > 0 && (
                 <div className="flex gap-2">
-                    {entry.tags.map(tagId => {
-                        const tag = tags.find(t => t.id === tagId);
+                    {entry.tags.map((tagId) => {
+                        const tag = tags.find((t) => t.id === tagId);
                         return tag ? (
                             <span
                                 key={tagId}
                                 className="px-2 py-0.5 bg-blue-50 text-blue-600 rounded text-xs"
                             >
-                {tag.name}
-              </span>
+                                {tag.name}
+                            </span>
                         ) : null;
                     })}
                 </div>
