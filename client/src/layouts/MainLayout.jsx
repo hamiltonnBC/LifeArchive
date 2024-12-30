@@ -11,8 +11,10 @@ const MainLayout = () => {
         <div className="flex h-screen bg-gray-50">
             <Sidebar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-            <div className={`flex-1 ${isSidebarOpen ? 'ml-64' : 'ml-16'}`}>
-                <header className="h-16 bg-white border-b flex items-center justify-between px-6 fixed top-0 right-0 left-64 z-10">
+            <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-16'}`}>
+                <header className={`h-16 bg-white border-b flex items-center justify-between px-6 fixed top-0 right-0 transition-all duration-300 ${
+                    isSidebarOpen ? 'left-64' : 'left-16'
+                } z-10`}>
                     <h1 className="text-xl font-bold text-slate-800">LifeArchive</h1>
                     <button className="flex items-center gap-2 px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-100">
                         <User size={20} />

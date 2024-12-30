@@ -1,59 +1,75 @@
 // src/pages/Home.jsx
-import React, { useState } from 'react';
-import { Calendar, Book, Lock, MessageSquare } from 'lucide-react';
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import Sidebar from '../components/Sidebar/Sidebar.jsx';
-import Header from '../components/Header';
-import FeatureCard from '../components/FeatureCard';
+import React from 'react';
+import { Calendar, Book, MessageSquare } from 'lucide-react';
+import { Alert, AlertDescription } from "../components/ui/alert";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 
 const Home = () => {
-    const [isSidebarOpen, setSidebarOpen] = useState(true);
-
     const features = [
         {
-            icon: <Calendar />,
+            icon: <Calendar className="h-5 w-5 text-blue-500" />,
             title: "Daily Journal",
-            description: "Track your daily experiences, moods, and medications. Add multimedia content and rate your day.",
-            iconColor: "blue-500"
+            description: "Track your daily experiences, moods, and medications. Add multimedia content and rate your day."
         },
         {
-            icon: <Book />,
+            icon: <Book className="h-5 w-5 text-green-500" />,
             title: "Life Chronicle",
-            description: "Document your life story with rich text and multimedia in organized sections.",
-            iconColor: "green-500"
+            description: "Document your life story with rich text and multimedia in organized sections."
         },
-        // ... add other features
+        {
+            icon: <MessageSquare className="h-5 w-5 text-purple-500" />,
+            title: "AI Assistant",
+            description: "Get insights and analyze patterns in your journals with private, local AI processing."
+        }
     ];
 
     return (
-        <div className="flex h-screen bg-gray-50">
-            <Sidebar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <div className="max-w-6xl mx-auto">
+            <Alert className="mb-8 bg-blue-50 border-blue-200">
+                <AlertDescription className="text-blue-800">
+                    Welcome to LifeArchive! Your personal digital sanctuary for memories, documents, and daily reflections.
+                </AlertDescription>
+            </Alert>
 
-            <div className={`flex-1 ${isSidebarOpen ? 'ml-64' : 'ml-16'}`}>
-                <Header isSidebarOpen={isSidebarOpen} />
-
-                <main className="pt-24 px-8 pb-8">
-                    <div className="max-w-6xl mx-auto">
-                        <Alert className="mb-8 bg-blue-50 border-blue-200">
-                            <AlertDescription className="text-blue-800">
-                                Welcome to LifeArchive! Your personal digital sanctuary for memories, documents, and daily reflections.
-                            </AlertDescription>
-                        </Alert>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            {features.map((feature, index) => (
-                                <FeatureCard key={index} {...feature} />
-                            ))}
-                        </div>
-
-                        {/* Recent Activity section remains the same */}
-                    </div>
-                </main>
-
-                <footer className="border-t bg-white py-4 px-8 text-center text-slate-600">
-                    <p>© 2024 LifeArchive. All rights reserved.</p>
-                </footer>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {features.map((feature, index) => (
+                    <Card key={index}>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                {feature.icon}
+                                {feature.title}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-slate-600">{feature.description}</p>
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
+
+            <Card className="mb-8">
+                <CardHeader>
+                    <CardTitle>Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+                            <Calendar className="h-8 w-8 text-blue-500" />
+                            <div>
+                                <h3 className="font-medium">Daily Entry Added</h3>
+                                <p className="text-sm text-slate-500">Today at 2:30 PM</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+                            <Book className="h-8 w-8 text-green-500" />
+                            <div>
+                                <h3 className="font-medium">Life Chronicle Updated</h3>
+                                <p className="text-sm text-slate-500">Yesterday at 4:15 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     );
 };
